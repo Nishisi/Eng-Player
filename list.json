@@ -1,0 +1,16 @@
+{
+    "lists": [
+        {
+            "word": "detect",
+            "translation": "~を見つける"
+        },
+        {
+            "word": "fool",
+            "translation": "~騙す"
+        },
+	{
+	  "word":"unlike",
+	  "translation":"~とは異なって"
+	}
+    ]
+}
