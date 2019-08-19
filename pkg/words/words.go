@@ -36,11 +36,10 @@ func (gm *Game) Play() {
 
 func (gm *Game) playGame() {
 	bc := context.Background()
-	ctx, cancel := context.WithTimeout(bc, 10*time.Second)
+	ctx, cancel := context.WithTimeout(bc, 30*time.Second)
 	defer cancel()
 
 	ch := gm.input()
-	fmt.Println(gm.wordList)
 
 gameLoop:
 	// for i := 0; i < len(gm.questions); i++ {

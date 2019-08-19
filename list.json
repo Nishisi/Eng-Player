@@ -11,6 +11,18 @@
 	{
 	  "word":"unlike",
 	  "translation":"~とは異なって"
+	},
+	{
+	  "word":"variant",
+	  "translation":""
+	},
+	{
+	  "word":"acknowledge",
+	  "translation":""
+	},
+	{
+	  "word":"stochastic",
+	  "translation":""
 	}
     ]
 }
