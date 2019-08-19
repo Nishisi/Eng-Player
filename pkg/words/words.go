@@ -63,7 +63,8 @@ gameLoop:
 		}
 
 		if in == question {
-			fmt.Fprintf(gm.writer, "Correct!\n\n %q\n\n", v.Translation)
+			// fmt.Fprintf(gm.writer, "Correct!\n\n %q\n\n", v.Translation)
+			fmt.Fprintf(gm.writer, "\n\n %q \n\n", getDictionary(question))
 		} else {
 			fmt.Fprintf(gm.writer, "Uncorrect..\n\n %q\n\n", v.Translation)
 		}
