@@ -10,14 +10,15 @@ import (
 )
 
 type Game struct {
-	reader   io.Reader
-	writer   io.Writer
-	wordList *WordList
+	reader io.Reader
+	writer io.Writer
+	// word.List interface
+	wordList List
 }
 
 func New(r io.Reader, w io.Writer, filename string) *Game {
 	wl := new(WordList)
-	err := wl.loadListFile(filename)
+	err := wl.LoadWordList(filename)
 	if err != nil {
 		fmt.Fprintf(w, "%q", err)
 		os.Exit(1)
@@ -41,10 +42,15 @@ func (gm *Game) playGame() {
 
 	ch := gm.input()
 
+	wl, err := gm.wordList.GetList()
+	if err != nil {
+
+	}
+
 gameLoop:
 	// for i := 0; i < len(gm.questions); i++ {
-	for i, v := range gm.wordList.Lists {
-		question := v.Word
+	for i, v := range wl {
+		question := v.word
 		fmt.Fprintf(gm.writer, "Number %d, %s\n", i+1, question)
 		Say(question)
 		fmt.Fprintf(gm.writer, "> ")
@@ -65,7 +71,7 @@ gameLoop:
 			// fmt.Fprintf(gm.writer, "Correct!\n\n %q\n\n", v.Translation)
 			fmt.Fprintf(gm.writer, "\n\n %q \n\n", getDictionary(question))
 		} else {
-			fmt.Fprintf(gm.writer, "Uncorrect..\n\n %q\n\n", v.Translation)
+			// fmt.Fprintf(gm.writer, "Uncorrect..\n\n %q\n\n", v.Translation)
 		}
 	}
 }

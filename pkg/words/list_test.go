@@ -1,13 +1,12 @@
-package words_test
+package words
 
 import (
 	"fmt"
 	"testing"
-
-	"github.com/dobuzora/learn-words-cl/pkg/words"
 )
 
-func TestLoadListFile(t *testing.T) {
-	l := new(words.WordList)
-	fmt.Println(l)
+func TestLoadWordList(t *testing.T) {
+	wl := &WordList{}
+	wl.LoadWordList("./_testdata/list")
+	fmt.Println(wl)
 }
