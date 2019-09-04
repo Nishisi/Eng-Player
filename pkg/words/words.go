@@ -7,6 +7,8 @@ import (
 	"io"
 	"os"
 	"time"
+
+	"github.com/dobuzora/learn-words-cl/pkg/aruku"
 )
 
 type Game struct {
@@ -47,6 +49,9 @@ func (gm *Game) playGame() {
 
 	}
 
+	// aruku
+	a := aruku.New("")
+
 gameLoop:
 	// for i := 0; i < len(gm.questions); i++ {
 	for i, v := range wl {
@@ -67,11 +72,13 @@ gameLoop:
 			break gameLoop
 		}
 
+		ans, _ := a.GetMeanAndFile(question)
 		if in == question {
-			// fmt.Fprintf(gm.writer, "Correct!\n\n %q\n\n", v.Translation)
-			fmt.Fprintf(gm.writer, "\n\n %q \n\n", getDictionary(question))
+			// fmt.Fprintf(gm.writer, "\n\n %q \n\n", getDictionary(question))
+			fmt.Fprintf(gm.writer, "\n\n %q \n\n", ans)
 		} else {
 			// fmt.Fprintf(gm.writer, "Uncorrect..\n\n %q\n\n", v.Translation)
+			fmt.Fprintf(gm.writer, "\n\n %q \n\n", ans)
 		}
 	}
 }
