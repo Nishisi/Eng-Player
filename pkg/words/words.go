@@ -56,7 +56,8 @@ gameLoop:
 	// for i := 0; i < len(gm.questions); i++ {
 	for i, v := range wl {
 		question := v.word
-		fmt.Fprintf(gm.writer, "Number %d, %s\n", i+1, question)
+		fmt.Fprintf(gm.writer, "Number %d, ", i+1)
+		fmt.Fprintf(gm.writer, "\x1b[31m%s\x1b[0m\n", question)
 		Say(question)
 		fmt.Fprintf(gm.writer, "> ")
 
