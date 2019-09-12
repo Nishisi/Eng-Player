@@ -6,18 +6,23 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"os/exec"
 	"time"
 
 	"github.com/dobuzora/learn-words-cl/pkg/aruku"
 )
 
+// Game struct
 type Game struct {
+	// Game Reader
 	reader io.Reader
+	// Game Writer
 	writer io.Writer
 	// word.List interface
 	wordList List
 }
 
+// New
 func New(r io.Reader, w io.Writer, filename string) *Game {
 	wl := new(WordList)
 	err := wl.LoadWordList(filename)
@@ -32,7 +37,8 @@ func New(r io.Reader, w io.Writer, filename string) *Game {
 	}
 }
 
-func (gm *Game) Play() {
+// Play Game.
+func (gm *Game) Do() {
 	gm.displayRule()
 	gm.playGame()
 }
@@ -51,6 +57,10 @@ func (gm *Game) playGame() {
 
 	// aruku
 	a := aruku.New("")
+
+	// Clear
+	cmd := exec.Command("clear")
+	cmd.Stdout = os.Stdout
 
 gameLoop:
 	// for i := 0; i < len(gm.questions); i++ {
@@ -81,11 +91,12 @@ gameLoop:
 			// fmt.Fprintf(gm.writer, "Uncorrect..\n\n %q\n\n", v.Translation)
 			fmt.Fprintf(gm.writer, "\n\n %q \n\n", ans)
 		}
+		// cmd.Run()
 	}
 }
 
 func (gm *Game) displayRule() {
-	fmt.Fprintf(gm.writer, "Please type word displaying windows screen")
+	fmt.Fprintf(gm.writer, "Please type word displaying windows screen\n")
 }
 
 func (gm *Game) input() <-chan string {

@@ -15,5 +15,5 @@ func main() {
 	)
 
 	g := words.New(reader, writer, filename)
-	g.Play()
+	g.Do()
 }
