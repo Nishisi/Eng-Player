@@ -89,10 +89,10 @@ gameLoop:
 		ans, _ := a.GetMeanAndFile(question)
 		if in == question {
 			// fmt.Fprintf(gm.writer, "\n\n %q \n\n", getDictionary(question))
-			fmt.Fprintf(gm.writer, "\n\n %q \n\n", ans)
+			fmt.Fprintf(gm.writer, "\n\n %s \n\n", ans)
 		} else {
 			// fmt.Fprintf(gm.writer, "Uncorrect..\n\n %q\n\n", v.Translation)
-			fmt.Fprintf(gm.writer, "\n\n %q \n\n", ans)
+			fmt.Fprintf(gm.writer, "\n\n %s \n\n", ans)
 		}
 		// cmd.Run()
 	}
