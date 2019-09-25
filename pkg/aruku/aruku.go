@@ -17,7 +17,6 @@ func (a *Aruku) GetMeanAndFile(word string) (string, string) {
 	return s, ""
 }
 
-// scraping
 func scrap(w string) (string, error) {
 	url := "https://eow.alc.co.jp/search?q="
 	url += w
@@ -26,12 +25,17 @@ func scrap(w string) (string, error) {
 		return "", err
 	}
 
-	selection := doc.Find("div#resultsList")
+	// resultsList の 最初の li タグ部分のみをとってくる
+	selection := doc.Find("div#resultsList li").First()
 
-	var title string
-	selection.Find("li").Each(func(i int, s *goquery.Selection) {
-		if i == 0 {
-			title = s.Find("div").Text()
+	title := ""
+
+	// TODO : html タグで ol で囲まれてても liで囲まれていないやつがある。その場合、要素が取れないので修正する必要あり
+	selection.Find("span.wordclass,li").Each(func(i int, s *goquery.Selection) {
+		if s.Is("li") {
+			title += " " + s.Text() + "\n"
+		} else {
+			title += "\n" + s.Text() + "\n"
 		}
 	})
 

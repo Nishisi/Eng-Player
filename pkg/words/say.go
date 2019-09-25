@@ -2,6 +2,11 @@ package words
 
 import "os/exec"
 
-func Say(sw string) {
-	exec.Command("say", sw).Run()
+// Say is to speak a word.
+func Say(sw string) error {
+	err := exec.Command("say", sw).Run()
+	if err != nil {
+		return err
+	}
+	return nil
 }

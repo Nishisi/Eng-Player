@@ -6,6 +6,6 @@ import (
 )
 
 func TestScrap(t *testing.T) {
-	s, _ := scrap("infer")
+	s, _ := scrap("respond")
 	fmt.Println(s)
 }

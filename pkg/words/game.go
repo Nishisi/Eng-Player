@@ -68,7 +68,10 @@ gameLoop:
 		question := v.word
 		fmt.Fprintf(gm.writer, "Number %d, ", i+1)
 		fmt.Fprintf(gm.writer, "\x1b[31m%s\x1b[0m\n", question)
-		Say(question)
+		err = Say(question)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "error : %v", err)
+		}
 		fmt.Fprintf(gm.writer, "> ")
 
 		var in string

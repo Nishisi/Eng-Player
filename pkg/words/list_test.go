@@ -7,6 +7,6 @@ import (
 
 func TestLoadWordList(t *testing.T) {
 	wl := &WordList{}
-	wl.LoadWordList("./_testdata/list")
+	_ = wl.LoadWordList("./_testdata/list")
 	fmt.Println(wl)
 }
