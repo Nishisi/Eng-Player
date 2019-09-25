@@ -41,7 +41,7 @@ func (wl *WordList) LoadWordList(filename string) error {
 	}
 
 	// 検証
-	for i := 0; i < 5; i++ {
+	for i := 0; i < len(lists); i++ {
 		wi := wordInfo{lists[i], "", ""}
 		wl.lists = append(wl.lists, wi)
 	}

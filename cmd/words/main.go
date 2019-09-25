@@ -8,9 +8,8 @@ import (
 
 func main() {
 	var (
-		reader = os.Stdin
-		writer = os.Stdout
-		//filename = "list.json"
+		reader   = os.Stdin
+		writer   = os.Stdout
 		filename = "list"
 	)
 

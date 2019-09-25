@@ -14,12 +14,9 @@ import (
 
 // Game struct
 type Game struct {
-	// Game Reader
-	reader io.Reader
-	// Game Writer
-	writer io.Writer
-	// word.List interface
-	wordList List
+	reader   io.Reader // Game Reader
+	writer   io.Writer // Game Writer
+	wordList List      // word.List interface
 }
 
 // New
@@ -45,7 +42,7 @@ func (gm *Game) Do() {
 
 func (gm *Game) playGame() {
 	bc := context.Background()
-	ctx, cancel := context.WithTimeout(bc, 30*time.Second)
+	ctx, cancel := context.WithTimeout(bc, 60*time.Second)
 	defer cancel()
 
 	ch := gm.input()
@@ -89,10 +86,10 @@ gameLoop:
 		ans, _ := a.GetMeanAndFile(question)
 		if in == question {
 			// fmt.Fprintf(gm.writer, "\n\n %q \n\n", getDictionary(question))
-			fmt.Fprintf(gm.writer, "\n\n %s \n\n", ans)
+			fmt.Fprintf(gm.writer, "\n %s \n", ans)
 		} else {
 			// fmt.Fprintf(gm.writer, "Uncorrect..\n\n %q\n\n", v.Translation)
-			fmt.Fprintf(gm.writer, "\n\n %s \n\n", ans)
+			fmt.Fprintf(gm.writer, "\n %s \n", ans)
 		}
 		// cmd.Run()
 	}
