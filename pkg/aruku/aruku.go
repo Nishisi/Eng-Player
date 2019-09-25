@@ -2,21 +2,23 @@ package aruku
 
 import "github.com/PuerkitoBio/goquery"
 
-// Aruku
+// An Aruku represents an alc.
 type Aruku struct {
 	soundURL string
 }
 
+// New returns a new Aruku given soundURL.
 func New(soundURL string) *Aruku {
 	return &Aruku{soundURL: soundURL}
 }
 
 // GetMeanAndFile is to get mean of word and audio file.
-func (a *Aruku) GetMeanAndFile(word string) (string, string) {
-	s, _ := scrap(word)
-	return s, ""
+func (a *Aruku) GetMeanAndFile(word string) (string, error) {
+	s, err := scrap(word)
+	return s, err
 }
 
+// スクレイピングします
 func scrap(w string) (string, error) {
 	url := "https://eow.alc.co.jp/search?q="
 	url += w
